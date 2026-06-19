@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Integrador - Indústria Verde</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Cores e Configurações Gerais */
+        :root {
+            --primary-color: #059669; /* Verde Sustentável */
+            --primary-dark: #047857;
+            --secondary-color: #0891b2; /* Azul Energia Limpa */
+            --dark-color: #1e293b; /* Cinza Industrial */
+            --light-color: #f8fafc;
+            --text-color: #334155;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-color);
+            font-weight: 700;
+        }
+
+        /* Barra de Navegação */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-nav {
+            background-color: var(--primary-color);
+            color: var(--white) !important;
+            padding: 8px 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s !important;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Seção 1: Home (Estilo Cartaz / Hero) */
+        #home {
+            background: linear-gradient(rgba(30, 41, 59, 0.85), rgba(30, 41, 59, 0.85)), 
+                        url('https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1200') no-repeat center center/cover;
+                        
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            color: var(--white);
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            color: var(--white);
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-content h1 span {
+            color: #34d399;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 35px;
+            opacity: 0.9;
+        }
+
+        .btn-hero {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 35px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;
+        }
+
+        .btn-hero:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Configurações de Seções Comuns */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #64748b;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Seção 2: Campanha (Explicação) */
+        .campanha-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .campanha-text {
+            flex: 1 1 500px;
+        }
+
+        .campanha-text h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .campanha-text p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: var(--text-color);
+        }
+
+        .campanha-stats {
+            flex: 1 1 400px;
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Barras de Progresso */
+        .progress-box {
+            margin-bottom: 25px;
+        }
+
+        .progress-box:last-child {
+            margin-bottom: 0;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background-color: #e2e8f0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 6px;
+        }
+
+        /* Seção 3: Ações Sustentáveis (Cards) */
+        #acoes {
+            background-color: var(--white);
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .acoes-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-acoes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card-acao {
+            background-color: var(--light-color);
+            padding: 40px 30px;
+            border-radius: 8px;
+            text-align: center;
+            border-bottom: 4px solid transparent;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card-acao:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-color);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .card-acao h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* Seção 4: Formulário de Coleta de Dados */
+        #contato {
+            background-color: var(--light-color);
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            color: var(--text-color);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            .hero-content p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGAÇÃO -->
+    <header>
+        <div class="navbar">
+            <a href="#home" class="logo">
+                <i class="fa-solid fa-leaf"></i> IndústriaVerde
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#campanha">A Campanha</a></li>
+                <li><a href="#acoes">Ações Práticas</a></li>
+                <li><a href="#contato">Apoiar / Contato</a></li>
+                <li><a href="#contato" class="btn-nav">Fazer Parte</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- SEÇÃO 1: HOME (ESTILO CARTAZ / HERO) -->
+    <section id="home">
+        <div class="hero-content">
+            <h1>O Futuro da Indústria é <span>Renovável</span></h1>
+            <p>Mobilizando o setor industrial para substituir matrizes poluentes por energia limpa, gerando eficiência e protegendo o planeta.</p>
+            <a href="#campanha" class="btn-hero">Conhecer a Campanha</a>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 2: CAMPANHA (EXPLICAÇÃO + METAS) -->
+    <section id="campanha">
+        <h2 class="section-title">A Nossa Campanha</h2>
+        <p class="section-subtitle">Entenda o impacto da transição energética no setor manufatureiro global.</p>
+        
+        <div class="campanha-container">
+            <div class="campanha-text">
+                <h3>Por que agir agora?</h3>
+                <p>A atividade industrial responde por uma parcela massiva do consumo global de eletricidade e emissão de gases do efeito estufa. Migrar para fontes limpas não é apenas um ato de responsabilidade ecológica, mas uma estratégia de sobrevivência e redução de custos operacionais.</p>
+                <p>Nossa iniciativa mapeia, conscientiza e promove a inserção de infraestruturas sustentáveis no coração da cadeia de produção.</p>
+            </div>
+            
+            <div class="campanha-stats">
+                <h3 style="font-size: 20px; margin-bottom: 25px;"><i class="fa-solid fa-chart-pie" style="color: var(--primary-color);"></i> Metas da Campanha até 2030</h3>
+                
+                <div class="progress-box">
+                    <div class="progress-info">
+                        <span>Matriz Solar & Eólica</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-box">
+                    <div class="progress-info">
+                        <span>Eficiência de Equipamentos</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-box">
+                    <div class="progress-info">
+                        <span>Redução de CO₂ Comercial</span>
+                        <span>60%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 3: AÇÕES SUSTENTÁVEIS (CARDS) -->
+    <section id="acoes">
+        <div class="acoes-wrapper">
+            <h2 class="section-title">Ações Sustentáveis</h2>
+            <p class="section-subtitle">Três pilares fundamentais para transformar qualquer planta industrial em um ecossistema verde.</p>
+            
+            <div class="grid-acoes">
+                <!-- Card 1 -->
+                <div class="card-acao">
+                    <div class="card-icon"><i class="fa-solid fa-solar-panel"></i></div>
+                    <h3>Geração Própria</h3>
+                    <p>Incentivo direto para instalação de painéis fotovoltaicos e microgeradores eólicos em galpões industriais ociosos.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card-acao">
+                    <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>Eficiência Energética</h3>
+                    <p>Substituição de motores antigos e uso de automação inteligente (sensores) para cortar desperdícios nas linhas de montagem.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card-acao">
+                    <div class="card-icon"><i class="fa-solid fa-smog"></i></div>
+                    <h3>Descarbonização</h3>
+                    <p>Troca gradual do uso de carvão e gás por fontes alternativas térmicas limpas, como o hidrogênio verde.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 4: FORMULÁRIO DE COLETA DE DADOS -->
+    <section id="contato">
+        <h2 class="section-title">Faça Parte da Mudança</h2>
+        <p class="section-subtitle">Assine o manifesto ou solicite uma consultoria de transição energética para a sua empresa.</p>
+        
+        <div class="form-container">
+            <form id="cadastroCampanha">
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail Corporativo / Pessoal</label>
+                    <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="perfil">Seu Perfil / Relação com o Setor</label>
+                    <select id="perfil" name="perfil" required>
+                        <option value="" disabled selected>Selecione uma opção</option>
+                        <option value="estudante">Estudante / Pesquisador</option>
+                        <option value="empresario">Empresário / Dono de Indústria</option>
+                        <option value="engenheiro">Engenheiro / Profissional do Setor</option>
+                        <option value="apoiador">Apoiador</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Como você ou sua empresa podem colaborar? (Opcional)</label>
+                    <textarea id="mensagem" name="mensagem" rows="4" placeholder="Conte-nos um pouco sobre seu interesse na campanha..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar Dados e Apoiar</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <p>&copy; 2026 Projeto Integrador de Josielle - Indústria Verde. Desenvolvido para Fins Acadêmicos.</p>
+    </footer>
+
+    <!-- INTERAÇÃO COM O USUÁRIO (JAVASCRIPT) -->
+    <script>
+        document.getElementById('cadastroCampanha').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o recarregamento automático da página
+            
+            // Coleta os valores digitados pelo usuário
+            const nomeUsuario = document.getElementById('nome').value;
+            const emailUsuario = document.getElementById('email').value;
+            const perfilUsuario = document.getElementById('perfil').value;
+            
+            // Exibe uma resposta interativa para o estudante/professor ver funcionando
+            alert(`Obrigado pelo apoio, ${nomeUsuario}!\n\nDados recebidos com sucesso:\n- E-mail: ${emailUsuario}\n- Perfil: ${perfilUsuario}\n\nNo ambiente de produção real (backend), esses dados seriam salvos em um banco de dados.`);
+            
+            // Limpa o formulário após o envio
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
